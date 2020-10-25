@@ -1,11 +1,12 @@
 package main
 
-import (
-	"fmt"
-	"github.com/AndrewOYLK/k8scode/kube"
-)
+import "github.com/AndrewOYLK/k8scode/client"
 
 func main() {
-	conf := kube.GetConfigFromFile()
-	fmt.Println(conf.Insecure)
+	//conf := kube.GetConfigFromFile()
+	//fmt.Println("==", conf.Insecure)
+
+	// 20201025
+	//client.TestClientSet()
+	client.TestInformer()
 }
