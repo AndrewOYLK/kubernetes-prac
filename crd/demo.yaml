@@ -1,0 +1,9 @@
+apiVersion: stable.example.com/v1beta1
+kind: CronTab
+metadata:
+  name: test
+  namespace: kube-system
+spec:
+  cronSpec: "abc"
+  image: "abc"
+  replicas: 3

@@ -1,0 +1,39 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  # name必须匹配spec字段: <plural>.<group>
+  name: crontabs.stable.example.com
+spec:
+  # /apis/<group>/<version>，一般可以是公司的域名
+  group: stable.example.com
+  # 列出自定义资源的所有API版本
+  versions:
+    - name: v1beta1
+      served: true # 是否开启通过REST APIs访问，一般都会开启
+      storage: true # 必须将一个且只有一个版本标记为存储版本
+      schema: # 定义自定义对象的声明规范
+        openAPIV3Schema: # 这是一种统一规范
+          description: Define CronTab YAML Spec
+          type: object
+          properties:
+            spec: # 类似平时些yaml的spec字段
+              type: object
+              properties:
+                cronSpec: # 字段
+                  type: string
+                image: # 字段
+                  type: string
+                replicas: # 字段
+                  type: integer
+  scope: Namespaced # Namespaced or Cluster
+  names: # 定义资源对象的名称
+    # kind是sigular的一个驼峰形式定义，在资源清单中会使用
+    kind: CronTab
+    # plural名字用于REST API中的定义
+    # /apis/<group>/<version>/<plural>
+    plural: crontabs
+    # singular名称用于CLI操作或显示的一个别名
+    singular: crontab
+    # 例子：kubectl get deploy
+    shortNames:
+      - ct

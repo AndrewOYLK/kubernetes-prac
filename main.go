@@ -1,6 +1,6 @@
 package main
 
-import "github.com/AndrewOYLK/k8scode/client"
+import "github.com/AndrewOYLK/k8scode/controller"
 
 func main() {
 	//conf := kube.GetConfigFromFile()
@@ -8,5 +8,8 @@ func main() {
 
 	// 20201025
 	//client.TestClientSet()
-	client.TestInformer()
+	//client.TestInformer()
+
+	// controller
+	controller.Test()
 }
