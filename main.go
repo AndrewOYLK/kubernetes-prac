@@ -1,6 +1,6 @@
 package main
 
-import "github.com/AndrewOYLK/k8scode/controller"
+import "github.com/AndrewOYLK/kubernetes-prac/client"
 
 func main() {
 	//conf := kube.GetConfigFromFile()
@@ -11,5 +11,7 @@ func main() {
 	//client.TestInformer()
 
 	// controller
-	controller.Test()
+	// controller.Test()
+
+	client.DynamicClient()
 }
