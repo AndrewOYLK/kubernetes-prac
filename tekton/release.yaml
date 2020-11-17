@@ -1713,6 +1713,8 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 5
+      imagePullSecrets:
+        - name: registrykey-ali
       volumes:
         - name: config-logging
           configMap:
@@ -1950,6 +1952,8 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 5
+      imagePullSecrets:
+        - name: registrykey-ali
 ---
 apiVersion: v1
 kind: Service
