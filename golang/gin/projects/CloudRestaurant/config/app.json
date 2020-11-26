@@ -1,0 +1,29 @@
+{
+  "app_name": "cloudrestaurant",
+  "app_mode": "debug",
+  "app_host": "localhost",
+  "app_port": "8090",
+  "sms": {
+    "sign_name": "mokalo",
+    "template_code": "SMS_184115831",
+    "app_key": "LTAI4FqB9KGNJNtRXUQkQmvF",
+    "app_secret": "H4YYDF5MNzJgBOkVbnYvgHlYEKG4Tv",
+    "region_id": "cn-hangzhou"
+  },
+  "database": {
+    "driver": "mysql",
+    "user": "root",
+    "password": "123qwe",
+    "host": "10.1.0.13",
+    "port": "3306",
+    "db_name": "gsql",
+    "charset": "utf8mb4",
+    "show_sql": true
+  },
+  "redis_config": {
+    "addr": "10.1.0.13",
+    "port": "6379",
+    "password": "123qwe",
+    "db": 0
+  }
+}

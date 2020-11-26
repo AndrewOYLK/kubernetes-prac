@@ -1,0 +1,12 @@
+syntax="proto3";
+package Services;
+import "Models.proto";
+
+message RegResponse {
+    string status=1;
+    string message=2;
+}
+
+service UserService {
+    rpc UserReg(UserModel) returns(RegResponse);
+}

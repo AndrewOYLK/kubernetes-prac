@@ -1,0 +1,26 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /ping                     --> main.main.func1 (3 handlers)
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2020/05/07 - 09:04:54 | 200 |       40.42µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:04:57 | 200 |       9.114µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:04:58 | 200 |       6.204µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:04:58 | 200 |       5.889µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:04:59 | 200 |       5.584µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:04:59 | 200 |       8.949µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:00 | 200 |       7.053µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:00 | 200 |       8.606µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:01 | 200 |      35.121µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:01 | 200 |       19.65µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:02 | 200 |       6.449µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:02 | 200 |       6.233µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:03 | 200 |       6.129µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:03 | 200 |        7.22µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:04 | 200 |      16.248µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:04 | 200 |      26.332µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:05 | 200 |      14.964µs |   192.168.189.1 | GET      "/ping"
+[GIN] 2020/05/07 - 09:05:05 | 200 |       6.074µs |   192.168.189.1 | GET      "/ping"

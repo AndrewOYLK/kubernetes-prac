@@ -1,0 +1,16 @@
+syntax = "proto3";
+package message;
+
+message reqNil {
+    int32 req = 1;
+}
+
+message respNil {
+    int32 resp = 1;
+}
+
+
+// 服务
+service AuthService {
+    rpc ChkHealth(reqNil) returns (respNil); // 接口 - 1
+}

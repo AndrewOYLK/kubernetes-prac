@@ -1,6 +1,6 @@
 FROM golang:1.15 as builder
 WORKDIR /root
-COPY . ./
+COPY .. ./
 RUN export GO111MODULE=on GOPROXY="https://goproxy.cn,https://goproxy.io,direct" \
     && CGO_ENABLED=0 GOOS=linux go build -o main main.go
 

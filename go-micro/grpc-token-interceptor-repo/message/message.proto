@@ -1,0 +1,18 @@
+syntax = "proto3";
+package message;
+
+message ReqNil {
+    int32 req = 1;
+}
+
+message RespMsg{
+    // code, data, msg
+    string code = 1;
+    string data = 2;
+    string msg = 3;
+}
+
+service AuthService {
+    rpc ChkHealth(ReqNil) returns (RespMsg);
+    rpc GetSome(ReqNil) returns (RespMsg);
+}
