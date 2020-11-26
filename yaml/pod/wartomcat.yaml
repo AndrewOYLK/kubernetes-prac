@@ -1,0 +1,27 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: wartomcat
+spec:
+  restartPolicy: Never
+  initContainers:
+  - name: war
+    image: geektime/sample:v2
+    command: ["cp", "/sample.war", "/app"]
+    volumeMounts:
+    - name: app-volume
+      mountPath: /app
+  containers:
+  - name: tomcat
+    image: geetime/tomcat:7.0
+    command: ["sh", "-c", "/root/apache-tomcat-7.0.42-v2/bin/start.sh"]
+    volumeMounts:
+    - name: app-volume
+      mountPath: /root/apache-tomcat-7.0.42-v2/webapps
+    ports:
+    - containerPort: 8080
+      hostPort: 8001
+  volumes:
+  - name: app-volume
+    emptyDir: {}
+  

@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: mi-res
+spec:
+  type: git # pipeline内置类型
+  params: # 内置有几个参数需要指定下
+  - name: url
+    value: http://git.ym/ouyanglongkun/little-web
+  - name: revision
+    value: master

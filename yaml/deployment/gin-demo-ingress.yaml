@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gin-demo-ingress
+spec:
+  rules:
+  - host: gin-demo.ym
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: gin-demo-service
+          servicePort: 8080

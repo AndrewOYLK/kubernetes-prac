@@ -1,0 +1,23 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: probe3
+  labels:
+    test: liveness
+spec:
+  restartPolicy: Always
+  containers:
+  - name: liveness
+    image: busybox
+    args:
+    - /bin/sh
+    - -c 
+    - touch /tmp/health; sleep 30; rm -rf /tmp/healthy; sleep 600
+    livenessProbe:
+      exec:
+        command: ["cat", "/tmp/healthy"]
+    #     command:
+    #     - cat
+    #     - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5

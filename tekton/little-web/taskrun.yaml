@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: testrun
+spec:
+  taskRef:
+    name: test # 指定执行的task
+  resources:
+    inputs:
+    - name: repo
+      resourceRef: 
+        name: mi-res
+  

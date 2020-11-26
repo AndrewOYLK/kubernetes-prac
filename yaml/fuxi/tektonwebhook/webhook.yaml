@@ -1,0 +1,12 @@
+apiVersion: fuxi.nip.io/v1
+kind: TektonWebHook
+metadata:
+  name: little-web
+  namespace: default
+spec:
+  git: 'http://git.ym/ouyanglongkun/little-web'
+  jobs:
+    - branch: master
+      params: []
+      pipeline_run: ""
+  secret: '12345'

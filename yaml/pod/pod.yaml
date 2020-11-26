@@ -1,0 +1,44 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: two-containers
+spec:
+  # nodeSelector:
+  #   disktype: ssd
+  # nodeName: test
+  hostAliases:
+  - ip: "10.1.2.3"
+    hostname:
+    - "foo.remote"
+    - "bar.remote"
+  shareProcessNamespace: true
+  restartPolicy: Never
+  containers:
+    - name: nginx-container
+      imagePullPolicy: always
+      image: nginx
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "echo hello from the postStart handler"]
+        preStop:
+          exec:
+            command: ["/usr/sbin/nginx", "-s", "quit"]
+      volumeMounts:
+      - name: shared-data
+        mountPath: /usr/share/nginx/html
+    - name: debian-container
+      imagePullPolicy: always
+      image: debian
+      volumeMounts:
+      - name: shared-data
+        mountPath: /pod-data
+      command: ["/bin/sh"]
+      args: ["-c", "echo hello from the debian container > /pod-data/index.html"]
+  volumes:
+    - name: shared-data
+      hostPath: # 卷来源
+        path: /data
+    - name: shared-data2
+      hostPath:
+        path: /data2

@@ -8,6 +8,8 @@ import (
 	"os"
 )
 
+// 有时候go开发，你很难知道第三方库的某个函数是返回结构体对象指针类型呢，还是值类型，必须回到
+// 源码区查看下，然后你才能在自己的函数返回类型上加上具体的类型
 func GetConfigFromFile() *rest.Config {
 	config, err := clientcmd.BuildConfigFromFlags("", fmt.Sprintf("%s\\%s", GetCurrentPath(), "kube\\config"))
 	if err != nil {

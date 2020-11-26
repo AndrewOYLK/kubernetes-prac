@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dockerfile
+  labels:
+    type: local
+spec:
+  storageClassName: rbd-storage
+  capacity:
+    # storage: 10Gi
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  rbd:
+    monitors: # 玉华哥的ceph集群
+    - 172.16.128.141:6789
+    - 172.16.128.142:6789
+    - 172.16.128.143:6789
+    pool: oylk # 池
+    # image: vol5 # oylk存储池的一个rbd映像
+    # image: vol4 # oylk存储池的一个rbd映像
+    # image: vol4 # oylk存储池的一个rbd映像
+    image: vol4 # oylk存储池的一个rbd映像
+    fsType: ext4
+    readOnly: false
+    user: oylk
+    secretRef:
+      name: ceph-secret
+    # keyring: /etc/ceph/keyring

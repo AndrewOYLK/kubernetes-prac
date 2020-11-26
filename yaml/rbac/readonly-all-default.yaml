@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: readonly-clusterrolebinding
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: "*"
+#   apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: read-only-clusterrole # 也可以指定k8s自到的ClusterRole的view对象
+  apiGroup: rbac.authorization.k8s.io

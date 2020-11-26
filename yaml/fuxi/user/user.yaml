@@ -1,0 +1,10 @@
+kind: BaseUser
+apiVersion: fuxi.nip.io/v1
+metadata:
+  name: admin
+  namespace: kube-system
+spec:
+  name: admin
+  password: admin
+  display: admin
+  department_id: kube-admin

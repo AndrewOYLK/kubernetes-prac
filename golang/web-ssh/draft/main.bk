@@ -1,0 +1,102 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gorilla/websocket"
+)
+
+func main() {
+	e := gin.Default()
+	e.GET("/ws/:namespace/:pod/:container", wsHandler)
+	e.Run(":8080")
+}
+
+// SearchMsg 搜索
+type SearchMsg struct {
+	NameSpace string `uri:"namespace"`
+	Pod       string `uri:"pod"`
+	Container string `uri:"container"`
+}
+
+func chkOrigin(r *http.Request) bool {
+	return true
+}
+
+func wsHandler(ctx *gin.Context) {
+	var sm = new(SearchMsg)
+	ctx.ShouldBindUri(sm)
+	fmt.Println(sm)
+
+	// 核心开始部分
+	var upgrader = websocket.Upgrader{
+		ReadBufferSize:    1024,
+		WriteBufferSize:   1024,
+		EnableCompression: true,
+		CheckOrigin:       chkOrigin,
+	}
+
+	// 从http协议升级到websocket协议
+	conn, err := upgrader.Upgrade(ctx.Writer, ctx.Request, nil)
+	if err != nil {
+		log.Println(err)
+		log.Println("upgrader.Upgrade")
+		return
+	}
+	defer conn.Close()
+
+	//  两种数据类型：TextMessage=1 BinaryMessage=2
+	// 方式1
+	// for {
+	// 	msgType, p, err := conn.ReadMessage()
+	// 	if err != nil {
+	// 		log.Println(err)
+	// 		return
+	// 	}
+
+	// 	log.Println("浏览器->服务端：", string(p))
+
+	// 	if err := conn.WriteMessage(msgType, p); err != nil {
+	// 		log.Println(err)
+	// 		return
+	// 	}
+	// }
+
+	// 方式2
+	// go readLoop(conn)
+	// for {
+	// 	msgType, r, err := conn.NextReader()
+	// 	if err != nil {
+	// 		return
+	// 	}
+	// 	msg, _ := ioutil.ReadAll(r)
+	// 	fmt.Println("消息类型：", msgType)
+	// 	fmt.Println("浏览器->服务端：", string(msg))
+
+	// 	w, err := conn.NextWriter(msgType)
+	// 	if err != nil {
+	// 		return
+	// 	}
+
+	// 	if _, err := io.Copy(w, r); err != nil {
+	// 		return
+	// 	}
+
+	// 	if err := w.Close(); err != nil {
+	// 		return
+	// 	}
+	// }
+
+}
+
+func readLoop(c *websocket.Conn) {
+	for {
+		if _, _, err := c.NextReader(); err != nil {
+			c.Close()
+			break
+		}
+	}
+}

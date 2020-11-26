@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test
+  namespace: default # 指定命名空间
+spec:
+  resources:
+    inputs: # 声明名字为repo的资源
+    - name: repo # 名称可随意定义，但是注意后面有用，默认把项目的代码clone到workspace目录下，以repo名称的子目录中，/workspace/repo
+      type: git
+  steps: # 容器集合，代表步骤
+  - name: run-test
+    image: golang:1.14 # 任何一个步骤都在pod中执行
+    workingDir: /workspace/repo # 工作目录->代码根目录下
+    command: ["go"] # 指令
+    args: ["test"] # 参数

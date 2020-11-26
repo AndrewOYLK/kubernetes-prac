@@ -1,0 +1,7 @@
+kind: BaseDepartment
+apiVersion: fuxi.nip.io/v1
+metadata:
+  name: kube-admin
+  namespace: kube-system
+spec: {}
+status: {}
