@@ -1,15 +1,16 @@
-package client
+package main
 
 import (
 	"flag"
-	"fmt"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
-	"os"
 	"path/filepath"
 )
+
+func main() {
+
+}
 
 func TestClientSet() {
 	var err error
@@ -64,4 +65,22 @@ func homeDir() string {
 	}
 	// Windows环境下
 	return os.Getenv("USERPROFILE")
+}
+
+func DynamicClient() {
+	restconfig, err := clientcmd.BuildConfigFromFlags("", "/root/.kube/config")
+	if err != nil {
+		panic(err)
+	}
+	tektoncli, err := v1beta1.NewForConfig(restconfig)
+	if err != nil {
+		panic(err)
+	}
+	tasklist, err := tektoncli.Tasks("default").List(metav1.ListOptions{})
+	if err != nil {
+		panic(err)
+	}
+	for _, v := range tasklist.Items {
+		fmt.Printf("%v", v)
+	}
 }
